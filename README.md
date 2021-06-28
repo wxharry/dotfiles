@@ -66,6 +66,8 @@ All the vim plugins are in `vim/.vim/plugged`. Color schemes can either be insta
 
 ## Screenshots
 
+![Snipaste_2021-06-28_23-10-11](https://user-images.githubusercontent.com/39271899/123660402-35742500-d866-11eb-8975-d96571820f3f.png)
+
 
 
 ![Snipaste_2021-06-26_idk](https://user-images.githubusercontent.com/39271899/123531238-90f2c580-d735-11eb-9dcc-84d4fdfdc959.jpg)
