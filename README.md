@@ -1,4 +1,4 @@
-# dotfiles
+# dofiles
 
 Dotfiles of my terminal settings
 
