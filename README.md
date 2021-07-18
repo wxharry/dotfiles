@@ -63,6 +63,11 @@ I installed [vim-plug](https://github.com/junegunn/vim-plug) to manage vim plugi
 All the vim plugins are in `vim/.vim/plugged`. Color schemes can either be installed as a plugin with vim-plug or download to `vim/.vim/colors`.
 
 
+## To do
+
+[See details](https://github.com/wxharry/dotfiles/projects/1)
+
+
 
 ## Screenshots
 
