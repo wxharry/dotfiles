@@ -1,12 +1,23 @@
 # dotfiles
 
-My dotfiles settings. WSL2+zsh+oh-my-zsh+tmux+vim.
+My dotfiles settings. zsh+oh-my-zsh+tmux+vim.
 
 
 
+## Prerequisite
 
+* vim
+* tmux
+* zsh
+* oh-my-zsh
+* p10k
 
-## Terminal
+## Installation
+```
+git clone https://github.com/wxharry/dotfiles.git && cd dotfiles && ./install
+```
+
+## Windows Terminal
 
 ### Windows(WSL)
 * Windows Terminal (recommended)
