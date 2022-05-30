@@ -2,7 +2,6 @@
     link:
       relink: true
       force: true
-      stderr: true
 
 - clean: ['~']
 
