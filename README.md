@@ -1,12 +1,36 @@
 # dotfiles
 
-My dotfiles settings. WSL2+zsh+oh-my-zsh+tmux+vim.
+My dotfiles settings. zsh+oh-my-zsh+tmux+vim.
 
 
 
+## Prerequisite
 
+* vim
+* tmux
+* zsh
+* oh-my-zsh
+* p10k
 
-## Terminal
+## Installation
+```
+git clone https://github.com/wxharry/dotfiles.git && cd dotfiles && ./install
+```
+
+## Questions
+**no such file or directory: $HOME/.oh-my-zsh/oh-my-zsh.sh**
+Install oh-my-zsh
+``` bash
+wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+sh install.sh
+```
+**[oh-my-zsh] theme 'powerlevel10k/powerlevel10k' not found**
+Install p10k
+``` bash
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+```
+
+## Windows Terminal
 
 ### Windows(WSL)
 * Windows Terminal (recommended)

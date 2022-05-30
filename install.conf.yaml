@@ -1,0 +1,17 @@
+- defaults:
+    link:
+      relink: true
+      force: true
+
+- clean: ['~']
+
+- link:
+    ~/.tmux.conf: tmux/.tmux.conf
+    ~/.tmux: tmux/.tmux
+    ~/.vim: vim/.vim
+    ~/.vimrc: vim/.vimrc
+    ~/.zshrc: .zshrc
+    ~/.p10k.zsh: .p10k.zsh
+
+- create:
+    - ~/.vim/undo-history
