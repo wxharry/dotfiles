@@ -2,11 +2,13 @@
     link:
       relink: true
       force: true
+      stderr: true
 
 - clean: ['~']
 
 - link:
     ~/.tmux.conf: tmux/.tmux.conf
+    ~/.tmux: tmux/.tmux
     ~/.vim: vim/.vim
     ~/.vimrc: vim/.vimrc
     ~/.zshrc: .zshrc
@@ -14,6 +16,3 @@
 
 - create:
     - ~/.vim/undo-history
-
-- shell:
-  - [git submodule update --init --recursive, Installing submodules]
