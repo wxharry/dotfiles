@@ -4,15 +4,9 @@ My dotfiles settings. zsh+oh-my-zsh+tmux+vim.
 
 ## Screenshots
 
-![Snipaste_2021-06-28_23-10-11](https://user-images.githubusercontent.com/39271899/123660402-35742500-d866-11eb-8975-d96571820f3f.png)
+![Snipaste_2022-07-20_14-56-51](https://user-images.githubusercontent.com/39271899/180076060-fe9502b8-67b9-4179-88fc-39633cd36994.png)
 
-
-
-![Snipaste_2021-06-26_idk](https://user-images.githubusercontent.com/39271899/123531238-90f2c580-d735-11eb-9dcc-84d4fdfdc959.jpg)
-
-
-
-![Snipaste_2021-06-26_22-37-18](https://user-images.githubusercontent.com/39271899/123531206-407b6800-d735-11eb-9cca-b28eb7d84281.png)
+![Snipaste_2022-07-20_16-32-46](https://user-images.githubusercontent.com/39271899/180076314-16024c38-d8f9-4da3-970d-311fbd9ebaf6.png)
 
 
 ## Prerequisite
