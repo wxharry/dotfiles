@@ -115,3 +115,13 @@ kubectl version &> /dev/null && source <(kubectl completion zsh)
 export LANG="en_US.UTF-8"
 
 autoload -U compinit; compinit
+
+# NVM Initialization
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# Machine-local overrides (not tracked in dotfiles repo)
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
