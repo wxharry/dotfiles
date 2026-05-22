@@ -123,5 +123,12 @@ export NVM_DIR="$HOME/.nvm"
 
 export PATH="$HOME/.local/bin:$PATH"
 
+# OS-specific brew shellenv
+{{- if eq .chezmoi.os "darwin" }}
+[ -f /opt/homebrew/bin/brew ] && eval "$(/opt/homebrew/bin/brew shellenv)"
+{{- else if eq .chezmoi.os "linux" }}
+[ -f /home/linuxbrew/.linuxbrew/bin/brew ] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+{{- end }}
+
 # Machine-local overrides (not tracked in dotfiles repo)
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local

@@ -1,86 +1,86 @@
 # dotfiles
 
-My dotfiles settings. zsh+oh-my-zsh+tmux+vim.
+Personal dotfiles managed with [chezmoi](https://www.chezmoi.io/). zsh + oh-my-zsh + tmux + vim.
 
-## Screenshots
+## Bootstrap a new machine
 
-![Snipaste_2022-07-20_14-56-51](https://user-images.githubusercontent.com/39271899/180076060-fe9502b8-67b9-4179-88fc-39633cd36994.png)
+```sh
+# 1. Install chezmoi (mac)
+brew install chezmoi
 
-![Snipaste_2022-07-20_16-32-46](https://user-images.githubusercontent.com/39271899/180076314-16024c38-d8f9-4da3-970d-311fbd9ebaf6.png)
-
-
-## Prerequisite
-
-* vim
-* tmux
-* zsh
-* oh-my-zsh
-* p10k
-
-## Installation
-```
-git clone https://github.com/wxharry/dotfiles.git && cd dotfiles && ./install
+# 2. Pull and apply this repo
+chezmoi init --apply https://github.com/wxharry/dotfiles.git
 ```
 
+Or chezmoi-less one-liner:
 
-## Theme (Windows Terminal)
-You can pick up a theme at [windows terminal themes](https://windowsterminalthemes.dev/). Click the `get theme` button below to copy the style and paste it to the `settings.json` in Windows Terminal. (currently using `BlulocoDark`)
-
-
-## Shell
-
-Currently using [zsh](https://www.zsh.org/).
-
-Installed [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) to manage my zsh configuration. oh-my-zsh have a lot of themes, you can pick a style you like in [Themes in ohmyzsh](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes).
-
-I am using [powerlevel10k](https://github.com/romkatv/powerlevel10k) and highly recommend it. It is easy to install and configure. 
-
-### Tips
-
-1. Edit `.zshrc` to configure zsh by omz.
-
-2. After editing `.zshrc`, use `source ~/.zshrc` to update zsh. 
-
-
-## Tmux
-
-Mixed with some of tmux theme schemes and self-made this style. 
-
-Installed [tpm](https://github.com/tmux-plugins/tpm) as my tmux plugin manager.
-
-All the plugins are in `tmux/.tmux/plugin`.
-
-### Tips
-
-1. Default color in tmux is 8 colors. You could use `echo $TERM` to see the difference. 
-
-   You need to edit `.tmux.conf` to change default terminal to 256.
-
-2. After editing `.tmux.conf`, use `tmux source .tmux.conf` to update tmux.
-
-
-
-## vim
-
-I am using the default color scheme in vim. 
-
-Installed [vim-plug](https://github.com/junegunn/vim-plug) to manage vim plugins. 
-
-All the vim plugins are in `vim/.vim/plugged`. Color schemes can either be installed as a plugin with vim-plug or download to `vim/.vim/colors`.
-
-Use `PlugInstall!` and `PlugUpdate!` to install and update plugins in vim.
-
-
-## Trouble Shooting
-**no such file or directory: $HOME/.oh-my-zsh/oh-my-zsh.sh**
-Install oh-my-zsh
-``` bash
-wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-sh install.sh
-```
-**[oh-my-zsh] theme 'powerlevel10k/powerlevel10k' not found**
-Install p10k
-``` bash
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+```sh
+sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply wxharry
 ```
 
+By default chezmoi clones into `~/.local/share/chezmoi`. If you prefer keeping the working copy elsewhere (e.g. `~/Code/dotfiles`), set:
+
+```toml
+# ~/.config/chezmoi/chezmoi.toml
+sourceDir = "/Users/you/Code/dotfiles"
+```
+
+## Plugin managers (one-time per machine)
+
+chezmoi only manages config files. Plugin managers and plugins live outside the repo.
+
+```sh
+# oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+# powerlevel10k
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
+  ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+
+# tpm (tmux plugin manager)
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# then inside tmux: prefix + I  to install configured plugins
+
+# vim plugins (vim-plug is vendored at ~/.vim/autoload/plug.vim)
+vim +PlugInstall +qall
+```
+
+## Daily workflow
+
+```sh
+chezmoi edit ~/.zshrc      # edit source
+chezmoi diff               # preview pending changes
+chezmoi apply              # apply
+chezmoi cd                 # cd into source repo
+```
+
+## Machine-local config
+
+Put work-only or machine-specific aliases / env vars in `~/.zshrc.local`. It is sourced by `~/.zshrc` if present and is NOT tracked in this repo. Secrets, AWS profiles, internal hostnames belong here.
+
+## Layout
+
+```
+dot_zshrc.tmpl              # zsh config (template — supports {{ .chezmoi.os }} branches)
+dot_p10k.zsh                # powerlevel10k theme config
+dot_tmux.conf               # tmux config
+dot_vimrc                   # vim config
+dot_vim/autoload/plug.vim   # vim-plug bootstrap
+dot_vim/colors/             # vim color schemes
+.chezmoiignore              # files chezmoi skips
+```
+
+`dot_` prefix → `.` on apply. `.tmpl` suffix → rendered as Go template.
+
+## Tips
+
+- Edit `dot_tmux.conf`, `chezmoi apply`, then in tmux: `prefix + r` (or `tmux source ~/.tmux.conf`).
+- Edit `dot_zshrc.tmpl`, `chezmoi apply`, then `source ~/.zshrc`.
+- OS-specific blocks in `dot_zshrc.tmpl`:
+  ```
+  {{- if eq .chezmoi.os "darwin" }}
+  # mac-only
+  {{- else if eq .chezmoi.os "linux" }}
+  # linux-only
+  {{- end }}
+  ```
