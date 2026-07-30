@@ -116,6 +116,9 @@ export LANG="en_US.UTF-8"
 
 autoload -U compinit; compinit
 
+# No beep on ambiguous tab completion (list shows = enough)
+unsetopt LIST_BEEP
+
 # NVM Initialization
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
