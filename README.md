@@ -37,8 +37,8 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
   ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
-# tpm (tmux plugin manager)
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+# tpack (tmux plugin manager, tpm drop-in replacement)
+brew install tpack
 # then inside tmux: prefix + I  to install configured plugins
 
 # vim plugins (vim-plug is vendored at ~/.vim/autoload/plug.vim)
@@ -74,7 +74,8 @@ dot_vim/colors/             # vim color schemes
 
 ## Tips
 
-- Edit `dot_tmux.conf`, `chezmoi apply`, then in tmux: `prefix + r` (or `tmux source ~/.tmux.conf`).
+- Edit `dot_tmux.conf`, then `chezmoi apply`. New settings reach a running server on its next start; avoid `tmux source ~/.tmux.conf`, which re-runs `tpack init` and re-initialises every plugin (prefix-highlight stops working until the server restarts). Prefer a targeted `tmux set-option -g ...` for a one-off tweak.
+- **Adding a `@plugin` line does not install it.** `tpack init` only loads what is already in `~/.tmux/plugins`. Run `tpack install` (or `prefix + I`) after editing the plugin list, then verify with `ls ~/.tmux/plugins`. A declared-but-missing plugin fails silently.
 - Edit `dot_zshrc.tmpl`, `chezmoi apply`, then `source ~/.zshrc`.
 - OS-specific blocks in `dot_zshrc.tmpl`:
   ```
